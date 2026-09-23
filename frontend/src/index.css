@@ -1,0 +1,393 @@
+/* ==========================================================================
+   AstroTeller 🔮 Design System & Global Styles
+   Palette:
+   - #03045E : Deep Midnight Navy (Abyss / Card base)
+   - #0077B6 : Deep Cerulean Blue (Primary Dark Accent)
+   - #00B4D8 : Electric Vivid Cyan (Primary Glow / Active / Highlights)
+   - #90E0EF : Soft Aqua Cyan (Secondary Accents / Borders / Subtext)
+   - #CAF0F8 : Frosted Starlight White (High-contrast text / Glowing tints)
+   ========================================================================== */
+
+:root {
+  /* Color Tokens */
+  --color-abyss: #03045E;
+  --color-ocean: #0077B6;
+  --color-cyan: #00B4D8;
+  --color-ice: #90E0EF;
+  --color-frost: #CAF0F8;
+
+  /* Background Palette */
+  --bg-darker: #020326;
+  --bg-dark: #03045E;
+  --bg-card: rgba(3, 8, 48, 0.78);
+  --bg-card-hover: rgba(0, 119, 182, 0.22);
+  --bg-glass: rgba(202, 240, 248, 0.04);
+  --bg-glass-strong: rgba(202, 240, 248, 0.08);
+
+  /* Primary Gradient & Glows */
+  --primary-500: #00B4D8;
+  --primary-600: #0077B6;
+  --primary-glow: rgba(0, 180, 216, 0.4);
+  --primary-gradient: linear-gradient(135deg, #00B4D8 0%, #0077B6 100%);
+  
+  /* Amber / Gold Celestial Accent */
+  --accent-amber: #90E0EF;
+  --accent-amber-glow: rgba(144, 224, 239, 0.35);
+  --amber-gradient: linear-gradient(135deg, #CAF0F8 0%, #90E0EF 50%, #00B4D8 100%);
+
+  /* Functional Accents */
+  --accent-cyan: #00B4D8;
+  --accent-rose: #fb7185;
+  --accent-emerald: #34d399;
+
+  /* Typography */
+  --text-primary: #CAF0F8;
+  --text-secondary: #90E0EF;
+  --text-muted: #5e9fb0;
+  --text-inverse: #03045E;
+
+  /* Borders & Dividers */
+  --border-subtle: rgba(144, 224, 239, 0.16);
+  --border-highlight: rgba(0, 180, 216, 0.45);
+  --border-focus: rgba(0, 180, 216, 0.8);
+
+  /* Shadows */
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.5);
+  --shadow-md: 0 4px 14px -1px rgba(0, 0, 0, 0.6), 0 2px 6px -1px rgba(0, 0, 0, 0.5);
+  --shadow-lg: 0 10px 30px -3px rgba(0, 0, 0, 0.75), 0 4px 12px -2px rgba(0, 0, 0, 0.5);
+  --shadow-glow: 0 0 25px -2px var(--primary-glow);
+  --shadow-gold-glow: 0 0 25px -2px var(--accent-amber-glow);
+
+  /* Radii */
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 16px;
+  --radius-xl: 24px;
+  --radius-full: 9999px;
+
+  /* Fonts */
+  --font-sans: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-display: 'Outfit', 'Inter', system-ui, sans-serif;
+}
+
+/* Reset & Box Sizing */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  min-height: 100%;
+  font-family: var(--font-sans);
+  background-color: var(--bg-darker);
+  color: var(--text-primary);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Background Cosmic Ambient */
+body {
+  background-image: 
+    radial-gradient(circle at 12% 15%, rgba(0, 180, 216, 0.16) 0%, transparent 45%),
+    radial-gradient(circle at 88% 20%, rgba(0, 119, 182, 0.20) 0%, transparent 50%),
+    radial-gradient(circle at 50% 80%, rgba(3, 4, 94, 0.55) 0%, transparent 60%);
+  background-attachment: fixed;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  color: var(--text-primary);
+  line-height: 1.25;
+}
+
+a {
+  color: #90E0EF;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+a:hover {
+  color: #CAF0F8;
+}
+
+button, input, select, textarea {
+  font-family: inherit;
+}
+
+/* Container */
+.container {
+  width: 100%;
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+/* Glass Card */
+.glass-card {
+  background: var(--bg-card);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  padding: 1.75rem;
+  box-shadow: var(--shadow-md);
+  transition: all 0.25s ease;
+}
+
+.glass-card:hover {
+  border-color: var(--border-highlight);
+  box-shadow: var(--shadow-lg), var(--shadow-glow);
+}
+
+.glass-panel {
+  background: var(--bg-card);
+  backdrop-filter: blur(12px);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+}
+
+/* Buttons */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.65rem 1.35rem;
+  font-size: 0.95rem;
+  font-weight: 600;
+  border-radius: var(--radius-md);
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  text-decoration: none;
+}
+
+.btn-primary {
+  background: var(--primary-gradient);
+  color: #03045E;
+  font-weight: 700;
+  box-shadow: 0 4px 16px 0 var(--primary-glow);
+}
+
+.btn-primary:hover:not(:disabled) {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 24px 0 rgba(0, 180, 216, 0.6);
+  filter: brightness(1.1);
+  color: #020326;
+}
+
+.btn-amber {
+  background: var(--amber-gradient);
+  color: #03045E;
+  font-weight: 700;
+  box-shadow: 0 4px 14px 0 var(--accent-amber-glow);
+}
+
+.btn-amber:hover:not(:disabled) {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 20px 0 var(--accent-amber-glow);
+  filter: brightness(1.08);
+}
+
+.btn-secondary {
+  background: var(--bg-glass-strong);
+  color: var(--text-primary);
+  border: 1px solid var(--border-subtle);
+}
+
+.btn-secondary:hover:not(:disabled) {
+  background: rgba(144, 224, 239, 0.15);
+  border-color: rgba(144, 224, 239, 0.35);
+  color: #CAF0F8;
+}
+
+.btn-danger {
+  background: rgba(244, 63, 94, 0.15);
+  color: #fda4af;
+  border: 1px solid rgba(244, 63, 94, 0.3);
+}
+
+.btn-danger:hover:not(:disabled) {
+  background: rgba(244, 63, 94, 0.3);
+  color: #fff;
+}
+
+.btn:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+  transform: none !important;
+}
+
+.btn-sm {
+  padding: 0.4rem 0.85rem;
+  font-size: 0.85rem;
+}
+
+.btn-lg {
+  padding: 0.85rem 1.85rem;
+  font-size: 1.05rem;
+  border-radius: var(--radius-lg);
+}
+
+/* Form Controls */
+.form-group {
+  margin-bottom: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.form-label {
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--text-secondary);
+}
+
+.form-input, .form-select, .form-textarea {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  background: rgba(3, 8, 48, 0.85);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  color: var(--text-primary);
+  font-size: 0.95rem;
+  transition: all 0.2s ease;
+  outline: none;
+}
+
+.form-input:focus, .form-select:focus, .form-textarea:focus {
+  border-color: #00B4D8;
+  box-shadow: 0 0 0 3px rgba(0, 180, 216, 0.25);
+}
+
+.form-input::placeholder, .form-textarea::placeholder {
+  color: var(--text-muted);
+}
+
+.form-error {
+  color: #fb7185;
+  font-size: 0.825rem;
+  margin-top: 0.25rem;
+}
+
+/* Badges */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.25rem 0.65rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  border-radius: var(--radius-full);
+}
+
+.badge-user {
+  background: rgba(0, 119, 182, 0.2);
+  color: #90E0EF;
+  border: 1px solid rgba(0, 180, 216, 0.35);
+}
+
+.badge-astrologer {
+  background: rgba(0, 180, 216, 0.2);
+  color: #CAF0F8;
+  border: 1px solid rgba(144, 224, 239, 0.4);
+}
+
+.badge-admin {
+  background: rgba(3, 4, 94, 0.6);
+  color: #90E0EF;
+  border: 1px solid rgba(0, 180, 216, 0.5);
+}
+
+.badge-success {
+  background: rgba(16, 185, 129, 0.15);
+  color: #6ee7b7;
+  border: 1px solid rgba(16, 185, 129, 0.3);
+}
+
+/* Table styles */
+.data-table-container {
+  overflow-x: auto;
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border-subtle);
+  background: var(--bg-card);
+}
+
+.data-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+  font-size: 0.9rem;
+}
+
+.data-table th {
+  padding: 1rem 1.25rem;
+  background: rgba(202, 240, 248, 0.03);
+  color: var(--text-secondary);
+  font-weight: 600;
+  border-bottom: 1px solid var(--border-subtle);
+  white-space: nowrap;
+}
+
+.data-table td {
+  padding: 1rem 1.25rem;
+  border-bottom: 1px solid var(--border-subtle);
+  color: var(--text-primary);
+}
+
+.data-table tbody tr:hover {
+  background: rgba(144, 224, 239, 0.04);
+}
+
+/* Cosmic Gradient Text using new color palette */
+.gradient-text {
+  background: linear-gradient(135deg, #CAF0F8 0%, #90E0EF 45%, #00B4D8 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.gradient-gold-text {
+  background: linear-gradient(135deg, #CAF0F8 0%, #00B4D8 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Animations */
+@keyframes pulseGlow {
+  0%, 100% { opacity: 0.6; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.05); }
+}
+
+@keyframes spinSlow {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.animate-pulse-glow {
+  animation: pulseGlow 3s infinite ease-in-out;
+}
+
+.animate-spin-slow {
+  animation: spinSlow 20s linear infinite;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg-darker);
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(144, 224, 239, 0.2);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 180, 216, 0.4);
+}
