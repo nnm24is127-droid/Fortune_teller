@@ -40,32 +40,62 @@ def _clean_json_output(raw_output: str) -> str:
 
 def _generate_fallback_interpretation(profile: AstrologyProfile) -> AstrologyInterpretation:
     """
-    Constructs a deterministic structured interpretation using static curated text.
+    Constructs a plain-English, friendly structured interpretation.
     Ensures system resilience if LLM is unconfigured or in offline fallback mode.
     """
     logger.info("Using deterministic fallback interpretation engine")
     base_reading = generate_structured_reading(profile)
 
+    sun = profile.sun_sign
+    moon = profile.moon_sign
+    asc = profile.ascendant
+    nak = profile.nakshatra
+    zodiac = profile.zodiac_sign
+
     return AstrologyInterpretation(
-        summary=base_reading.summary,
-        personality=f"{base_reading.sun_interpretation} {base_reading.ascendant_interpretation}",
+        summary=(
+            f"You were born with your Sun in {sun}, your Moon in {moon}, and {asc} as your Rising sign — "
+            f"a combination that makes you someone who is driven, deeply feeling, and genuinely one-of-a-kind. "
+            f"Your chart tells the story of a person with real inner strength and a lot to offer the world."
+        ),
+        personality=(
+            f"At your core, you carry the energy of {sun} — which means you naturally bring boldness, "
+            f"enthusiasm, and a strong sense of who you are into everything you do. "
+            f"On the inside, your Moon in {moon} means your emotional world is rich and complex — "
+            f"you feel things more deeply than most people realise. "
+            f"When people first meet you, they see your {asc} Rising side — the face you show the world — "
+            f"which gives you a distinctive first impression that often sticks with people."
+        ),
         strengths=[
-            f"Conscious vitality and expression in {profile.sun_sign}",
-            f"Intuitive and emotional instincts in {profile.moon_sign}",
-            f"Lunar archetype traits in {profile.nakshatra} Nakshatra"
+            f"You have a natural boldness and confidence from your Sun in {sun} — when you set your mind on something, you go for it wholeheartedly.",
+            f"Your Moon in {moon} gives you powerful emotional intelligence — you sense what others are feeling, often before they say a word.",
+            f"People around you notice your {asc} energy — there's something about the way you carry yourself that draws others in and makes them feel at ease."
         ],
         areas_for_reflection=[
-            f"Balancing inner emotional needs of {profile.moon_sign} with outer {profile.ascendant} presentation",
-            "Cultivating patience and intentional self-reflection"
+            f"You might sometimes find that the intensity of your Moon in {moon} pulls you inward — it's worth pausing to share what you're feeling instead of carrying it alone.",
+            f"One thing worth exploring is finding the balance between your inner emotional world ({moon}) and the confident, outward-facing version of you that others see ({asc}) — both sides are real and valuable."
         ],
-        relationships=f"Approaches connections with the emotional instincts of {profile.moon_sign} and social demeanor of {profile.ascendant}.",
-        career=f"Driven by the vital spark of {profile.sun_sign} combined with Western {profile.zodiac_sign} archetypes.",
-        explanation=(
-            f"Vedic Sun ({profile.sun_sign}) represents conscious purpose. "
-            f"Moon ({profile.moon_sign}) and Nakshatra ({profile.nakshatra}) govern the subconscious mind. "
-            f"Ascendant ({profile.ascendant}) governs the physical life path."
+        relationships=(
+            f"In relationships, your Moon in {moon} means you care deeply and feel things strongly — "
+            f"loyalty and emotional honesty matter a lot to you. "
+            f"Your {asc} Rising shapes how you come across to others at first — "
+            f"and once people get to know the real you, they find someone with far more depth than they expected. "
+            f"You connect best with people who appreciate sincerity and aren't afraid of real conversations."
         ),
-        disclaimer=base_reading.disclaimer
+        career=(
+            f"Your Sun in {sun} gives you a drive and energy that makes you well-suited to roles where you can take initiative and make things happen. "
+            f"You're not someone who thrives sitting on the sidelines — you want to be involved, to lead, to create. "
+            f"Your {nak} Nakshatra adds a layer of focus and dedication to your work style, "
+            f"meaning when you care about something, you pour yourself into it completely."
+        ),
+        explanation=(
+            f"Think of your birth chart like a snapshot of the sky the moment you were born. "
+            f"Your Sun sign ({sun}) shows your core drive — it's your 'engine'. "
+            f"Your Moon sign ({moon}) reveals your emotional inner world — how you feel and react privately. "
+            f"Your Rising sign ({asc}) is how you appear to others — your 'first impression'. "
+            f"Your Nakshatra ({nak}) adds finer detail to your Moon, like a zoom-in on your emotional personality."
+        ),
+        disclaimer="This reading is for fun, self-reflection, and personal inspiration — not a prediction of your future. You always have the power to shape your own path."
     )
 
 
